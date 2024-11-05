@@ -4,45 +4,32 @@ local mainopens = Instance.new("UICorner")
 local loki = Instance.new("ImageLabel")
 local posto = Instance.new("UIStroke")
 
-local player = game.Players.LocalPlayer
-local gui = Instance.new("ScreenGui")
-gui.Name = "sanshub打开隐藏"
-gui.DisplayOrder = 999999999
-gui.IgnoreGuiInset = true
-gui.ResetOnSpawn = false
-gui.Parent = player:WaitForChild("PlayerGui")
+openshit.Name = "openshit"
+openshit.DisplayOrder = 999999999
+openshit.IgnoreGuiInset = false
+openshit.ResetOnSpawn = false
+openshit.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+openshit.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
-local mainopen = Instance.new("TextButton")
 mainopen.Name = "mainopen"
-mainopen.Parent = gui
-mainopen.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+mainopen.Parent = openshit
+mainopen.BackgroundColor3 = Color3.new(0, 0, 0)
 mainopen.BackgroundTransparency = 0.75
+mainopen.Position = UDim2.new(1, 0, 0.5, 0)
+
 mainopen.Size = UDim2.new(0, 64, 0, 42)
-mainopen.TextColor3 = Color3.fromRGB(255, 255, 255)
+mainopen.TextColor3 = Color3.new(1,1,1)
 mainopen.Text = ""
-mainopen.Font = Enum.Font.Code
-mainopen.ClipsDescendants = true
+mainopen.Font = 'Code'
 mainopen.Visible = true
-mainopen.TextSize = 14
-
-local function updatePosition()
-    local screenGui = player:WaitForChild("PlayerGui"):FindFirstChild(gui.Name)
-    if screenGui then
-        local width = math.min(game:GetService("GuiService"):GetScreenResolution().X, game:GetService("GuiService"):GetScreenResolution().Y)
-        local height = math.max(game:GetService("GuiService"):GetScreenResolution().X, game:GetService("GuiService"):GetScreenResolution().Y)
-        local scale = width / 1920
-        mainopen.Position = UDim2.new(1, -64 * scale, 1, -42 * scale)
-    end
-end
-
-updatePosition()
-game:GetService("GuiService"):GetPropertyChangedSignal("ScreenResolution"):Connect(updatePosition)
-
+mainopen.TextSize = '14'
 mainopen.MouseButton1Click:Connect(function()
-    game:GetService("VirtualInputManager"):SendKeyEvent(true, Enum.KeyCode.F1, false, game)
-    game:GetService("VirtualInputManager"):SendKeyEvent(false, Enum.KeyCode.F1, false, game)
+	game:GetService("VirtualInputManager"):SendKeyEvent(true,Enum.KeyCode.F1,false,game)
+	game:GetService("VirtualInputManager"):SendKeyEvent(false,Enum.KeyCode.F1,false,game)
 end)
 
+mainopens.Parent = mainopen
+ 
  loki.Name = "loki"
  loki.Parent = mainopen
  loki.BackgroundColor3 = Color3.fromRGB(224,224,224)
